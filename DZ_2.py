@@ -11,7 +11,6 @@
 30
 [10, 25, 30, 40, 50, 60]
 """
-from ctypes import HRESULT
 
 numbers = [10, 20, 30, 40, 50, 60, 70]
 print(f"3 Элемент списка: {numbers[2]}")
@@ -36,16 +35,16 @@ print(f"Добавляем число 75 в конец списка: {numbers}")
 colors = ("Красный","Зеленый","Синий","Черный")
 print(f"Выводим 1 элемент кортежа: {colors[0]}")
 
-#Кортежи не изменяемы поэтому, поэтому можем приобразовать кортеж в список, изменить элемент и вернуть в кортеж(спс дипсику)
+#Кортежи не изменяемы, поэтому можем приобразовать кортеж в список, изменить элемент и вернуть в кортеж(спс дипсику)
 list_colors = list(colors)
 list_colors[1] = "Желтый"
 new_colors = tuple(list_colors)
-print(f"Меняем 2 элемент списка(Зеленый) на Желтый: {new_colors}")
+print(f"Выводим полученный после изменения кортеж: {new_colors}")
 
 #Создаем новый кортеж, добавив к исходному кортежу элемент "Фиолетовый"
 new_element = ("Фиолетовый")
-new_colors = colors + (new_element,)
-print(f"Выводим оба кортежа: \n{colors}\n{new_colors}")
+new_tuple = colors + (new_element,)
+print(f"Выводим оба кортежа: \n{colors}\n{new_tuple}")
 
 
 """
@@ -62,18 +61,18 @@ print(f"Выводим оба кортежа: \n{colors}\n{new_colors}")
 {3, 4, 5, 6}
 """
 #Выводим общие элементы
-num_1 = {1, 2 ,3, 8}
-num_2 = {1, 2, 3, 4, 5}
+num_1 = {1, 2 ,3, 9}
+num_2 = {1, 2, 3, 5, 8}
 
-for i in num_1 & num_2:
-    print(i)
+nums = num_1 & num_2
+print(f"Выводим общие элементы: {nums}")
 
 #Объединяем множества
 sum_nums = num_1 | num_2
-print(sum_nums)
+print(f"Объединяем множества: {sum_nums}")
 
 #Удаляем число 4 из второго множества
-num_2.remove(4)
+num_2.remove(5)
 print(f"Выводим итоговые множества: \n{num_1}\n{num_2}")
 
 
@@ -89,7 +88,7 @@ print(f"Выводим итоговые множества: \n{num_1}\n{num_2}")
 {'имя': 'Алексей', 'курс': 2, 'город': 'Москва'}
 
 """
-#Словарь person: name, age, city
+#Словарь
 person = {
     "name": "George",
     "age": "26",
@@ -97,7 +96,9 @@ person = {
 }
 
 print(f"Выводим значение по ключу age: {person.get("age")}")
+#Добавляем новую пару ключ:значение
 person.update({"height": "180"})
+#Удаляем ключ city
 del person["city"]
 print(f"Выводим измененный словарь: {person}")
 """
@@ -113,16 +114,13 @@ print(filter_positive([-5, 10, 0, 3, -2]))  # вывод [10, 3]
 Переберите исходный список и добавьте в новый только положительные числа.
 """
 
-numbers = [-3, -4, 10, -15, 0, -1, 8, 4, 6]
-
-
-def positive_list(numbers):
+def positive_list(list):
     result = []
-    for num in numbers:
+    for num in list:
         if num > 0:
             result.append(num)
-
-print(positive_list)
+    return result
+print(f"Выводим результат: {positive_list([-3, -4, 10, 15, 0, -1, 8, 4, 6])}")
 
 
 
@@ -137,3 +135,17 @@ print(student["возраст"])  # вывод 24
 Подсказка:
 Обратитесь к ключу "возраст" и измените его значение.
 """
+
+
+def update_age(child, num):
+    if "age" in child:
+        child["age"] += num
+    return child
+
+child = {
+    "name": "Vova",
+    "age": 12,
+    "city": "Glazov"
+}
+
+print(f"Выводим обновленный словарь: {update_age(child, 11)}")
