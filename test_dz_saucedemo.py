@@ -17,7 +17,7 @@ def test_saucedemo():
         page.click("#login-button")
 
         # Проверка авторизации
-        expect(page.locator("#header_container > div.header_secondary_container > span")).to_be_visible(timeout=10000)
+        expect(page.locator("#header_container > div.header_secondary_container > span")).to_have_text("Products")
 
         # Добавление товара в корзину
         page.click("#item_4_title_link > div")
