@@ -16,6 +16,9 @@ def test_saucedemo():
         page.fill("#password", "secret_sauce")
         page.click("#login-button")
 
+        # Проверка авторизации
+        expect(page.locator("#header_container > div.header_secondary_container > span")).to_be_visible(timeout=10000)
+
         # Добавление товара в корзину
         page.click("#item_4_title_link > div")
         page.click("#add-to-cart")
