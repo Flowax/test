@@ -12,14 +12,15 @@ def auth_page(page):
     page.click("#login-button")
     # Проверка авторизации
     assert page.locator("#header_container > div.header_secondary_container > span").is_visible()
-    expect(page.locator("#header_container > div.header_secondary_container > span")).to_have_text("Products")
+    assert page.locator("#header_container > div.header_secondary_container > span").text_content() == "Products"
+
 
 def test_add_to_cart(page, auth_page):
     # Добавление товара в корзину
     page.click("#item_4_title_link > div")
     page.click("#add-to-cart")
     # Проверка добавления товара в корзину
-    expect(page.locator("#remove")).to_be_visible(timeout=10000)
+    assert page.locator("#remove").is_visible()
 
 def test_about_page(page, auth_page):
     # Переход на страницу About
