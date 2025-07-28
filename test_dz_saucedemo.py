@@ -9,7 +9,7 @@ def test_saucedemo():
     try:
         # Открываем страницу, проверяем тайтл
         page.goto("https://www.saucedemo.com/", timeout=10000)
-        expect(page).to_have_title("Swag Labs")
+        assert page.title() == "Swag Labs"
 
         # Авторизация
         page.fill("#user-name", "standard_user")
